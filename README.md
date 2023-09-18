@@ -1,145 +1,261 @@
-<p align='center'>
-<img src ="https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png">
-<p>
+*Autor Repositorio: Iván Rojas Gallego*<br>
+*correo: idaroga@gmail.com*<br>
+*Fecha: Septiembre del 2023*<br>
 
-<h1 align='center'>
- <b>PROYECTO INDIVIDUAL Nº2</b>
-</h1>
- 
-# <h1 align="center">**`Siniestros viales`**</h1>
+## 1- **Comprensión del negocio**
 
-¡Bienvenidos al último proyecto individual de la etapa de labs! En esta ocasión, deberán hacer un trabajo situándose en el rol de un ***Data Analyst***.
-<p align='center'>
-<img src = 'https://static.lajornadaestadodemexico.com/wp-content/uploads/2022/08/Siniestros-viales.jpg' height = 500>
-<p>
+![Accidentes](src/01_intro.png)
 
-## **Descripción del problema -contexto y rol a desarrollar-**
+### **Observaciones y conclusiones:**
 
-Los siniestros viales, también conocidos como accidentes de tráfico o accidentes de tránsito, son eventos que involucran vehículos en las vías públicas y que pueden tener diversas causas, como colisiones entre automóviles, motocicletas, bicicletas o peatones, atropellos, choques con objetos fijos o caídas de vehículos. Estos incidentes pueden tener consecuencias que van desde daños materiales hasta lesiones graves o fatales para los involucrados.
+Se realizará el analisis sobre una base de datos tomada para los accidentes viale para la iudad de Buenos Aires desde el 2016 hasta el 2021 ya que es de suma importancia reducir las tasas de mortalidad relacionadas con sinietros viales a través de la prevención de los mismos.
 
-En el contexto de una ciudad como Buenos Aires, los siniestros viales pueden ser una preocupación importante debido al alto volumen de tráfico y la densidad poblacional. Estos incidentes pueden tener un impacto significativo en la seguridad de los residentes y visitantes de la ciudad, así como en la infraestructura vial y los servicios de emergencia.
+Para tal fin es importante establecer ciertos objetivos y analizar sus respectivos indicadores de rendimiento (KPIs)<br>
 
-Las tasas de mortalidad relacionadas con siniestros viales suelen ser un indicador crítico de la seguridad vial en una región. Estas tasas se calculan, generalmente, como el número de muertes por cada cierto número de habitantes o por cada cierta cantidad de vehículos registrados. Reducir estas tasas es un objetivo clave para mejorar la seguridad vial y proteger la vida de las personas en la ciudad.
+- `OBJETIVO 1`:
+    Reducir en un 10% la tasa de homicidios en siniestros viales de los últimos seis meses, en CABA, en comparación con la tasa de homicidios en siniestros viales del semestre anterior.
+    - `KPI 1`: Se define la tasa de homicidios en siniestros viales como el número de víctimas fatales en accidentes de tránsito por cada 100,000 habitantes en un área geográfica durante un período de tiempo específico.
+    - `FORMULA 1`: (Número de homicidios en siniestros viales / Población total) * 100,000
+    - `CORECCIÓN FORMULA 1`: (porcentaje de variación): {[[(Número de homicidios en siniestros viales `del semestre anterior` / Población total `del semestre anterior`) * 100,000] - [(Número de homicidios en siniestros viales `del semestre actual` / Población total `del semestre actual`) * 100,000]] / [(Número de homicidios en siniestros viales `del semestre anterior` / Población total `del semestre anterior`) * 100,000]} * 100<br>
+    <br>
+- `OBJETIVO 2`:
+    Reducir en un 7% la cantidad de accidentes mortales de motociclistas en el último año, en CABA, respecto al año anterior
+    - `KPI 2`: Se define la cantidad de accidentes mortales de motociclistas en siniestros viales como el número absoluto de accidentes fatales en los que estuvieron involucradas víctimas que viajaban en moto en un determinado periodo temporal.
+    - `FORMULA 2` (porcentaje de variación): [(Número de accidentes mortales con víctimas en moto en el año anterior - Número de accidentes mortales con víctimas en moto en el año actual) / (Número de accidentes mortales con víctimas en moto en el año anterior)] * 100.<br>
+    <br>
+- `OBJETIVO 3`:
+    planteado por el analista
+    - `KPI 3`:  planteado por el analista de acuerdo al OBJETIVO 3
+    - `FORMULA 3`: planteada por el analista de acuerdo al KPI 3<br>
 
-Es importante destacar que la prevención de siniestros viales involucra medidas como la educación vial, el cumplimiento de las normas de tráfico, la infraestructura segura de carreteras y calles, así como la promoción de vehículos más seguros. El seguimiento de las estadísticas y la implementación de políticas efectivas son esenciales para abordar este problema de manera adecuada.
+## 2- **Exploración inicial**
 
+![Exploración](src/01_explorar.png)
 
-### **Contexto**
+### **Conclusiones: df_hechos**
 
-En Argentina, cada año mueren cerca de 4.000 personas en siniestros viales. Aunque muchas jurisdicciones han logrado disminuir la cantidad de accidentes de tránsito, esta sigue siendo la principal causa de muertes violentas en el país.
-Los informes del Sistema Nacional de Información Criminal (SNIC), del Ministerio de Seguridad de la Nación, revelan que entre 2018 y 2022 se registraron 19.630 muertes en siniestros viales en todo el país. Estas cifras equivalen a 11 personas por día que resultaron víctimas fatales por accidentes de tránsito.
+- ``ID``: categórico (str)
+- ``N_VICTIMAS``: numérico (int).
+- ``FECHA``: categórico (datetime.date).
+- ``AAAA``: numérico (int).
+- ``MM``: numérico (int).
+- ``DD``: numérico (int).
+- ``HORA``: numérico (datetime.time).
+- ``HH``: numérico (int).
+- ``LUGAR_DEL_HECHO``: categórico (str).
+- ``TIPO_DE_CALLE``: categórico (str). 
+- ``Calle``: categórico (str).
+- ``Altura``: numérico (float).
+- ``Cruce``: categórico (str).
+- ``Dirección Normalizada``: categórico (str).
+- ``COMUNA``: categórico (str).
+- ``XY (CABA)``: categórico (str).
+- ``pos x``: numérico (float).
+- ``pos y``: numérico (float).
+- ``PARTICIPANTES``: categórico (str).
+- ``VICTIMA``: categórico (str).
+- ``ACUSADO``: categórico (str).
 
-Solo en 2022, se contabilizaron 3.828 muertes fatales en este tipo de hechos. Los expertos en la materia indican que en Argentina es dos o tres veces más alta la probabilidad de que una persona muera en un siniestro vial que en un hecho de inseguridad delictiva.
+## 3- **Planteamiento**
 
-### **Rol a desarrollar**
+![Planteamientos](src/01_planteamientos.png)
 
-El `Observatorio de Movilidad y Seguridad Vial` (OMSV), centro de estudios que se encuentra bajo la órbita de la ***Secretaría de Transporte*** del Gobierno de la Ciudad Autónoma de Buenos Aires, nos solicita la elaboración de un proyecto de anális de datos, con el fin de generar información que le permita a las autoridades locales tomar medidas para disminuir la cantidad de víctimas fatales de los siniestros viales.
-Para ello, nos disponibilizan un dataset sobre homicidios en siniestros viales acaecidos en la Ciudad de Buenos Aires durante el periodo 2016-2021. Este dataset se encuentra en formato *xlsx* y contiene dos hojas llamadas: **hechos** y **víctimas**. Asimismo, observarán que incluye otras dos hojas adicionales de diccionarios de datos, que les podrá servir de guía para un mayor entendimiento de la data compartida.
+- `OBJETIVO 3`:
+    Reducir en un 5% el número de accidentes mortales en el ultimo semestre en CABA, ocasionados por el mayor responsable de siniestros viales del ultimo semestre, respecto al mismo responsable en el semestre anterior.
+    - `KPI 3`: Se define la cantidad de accidentes mortales ocasionado por el mayor responsable de homicidios en siniestros viales del ultimo semestre como el número absoluto de accidentes fatales causados por el mayor responsable de siniestros viales del ultimo semestre en un determinado periodo temporal. 
+    - `FORMULA 3` (porcentaje de variación): {(número de accidentes mortales ocasionados por el mayor responsable de siniestros viales del ultimo semestre en el semestre anterior - número de accidentes mortales ocasionados por el mayor responsable de siniestros viales del ultimo semestre en el semestre actual) / (número de accidentes mortales ocasionados por el mayor responsable de siniestros viales del ultimo semestre en el semestre anterior)} * 100.
 
-Por su parte, en la sección **Material de apoyo** podrán encontrar más información de interés relativa a los datos disponibilizados y al Observatorio que nos encomienda el trabajo.
+Según los KPI planteados se requieren los siguientes campos para realizar el análisis:
 
+- KPI 1: tasa de homicidios en siniestros viales
+    - Semestre anterior
+    - Número homicidios semestre anterior
+    - Poblacion total en el semestre anterior
+    - Semestre actual
+    - Número homicidios semestre actual
+    - Poblacion total en el semestre actual<br>
+    <br>
+- KPI 2: Cantidad de accidentes mortales de motociclistas en siniestros viales
+    - Victima = MOTO
+    - Año anterior
+    - Número accidentes año anterior
+    - Año actual
+    - Número accidentes año actual<br>
+    <br>
+- KPI 3: Cantidad de accidentes mortales ocasionado por el mayor responsable de homicidios en siniestros viales del ultimo semestre
+    - Mayor responsable de accidentes
+    - Semestre anterior
+    - Número accidentes semestre anterior
+    - Semestre actual
+    - Número accidentes semestre actual<br>
 
-## **Propuesta de trabajo -mínimos entregables tech-**
-*Es importante que a la hora de empezar a desarrollar cada item, y tu demo, te ayudes tambien de la [rúbrica de evaluación](https://docs.google.com/spreadsheets/d/e/2PACX-1vTV3zL1aeGRlbXkiy5012GWbDBMseA4iziMXs597TZfgaYgazjxZDx_-q6L4s9io3JW4UPHcZs_XNyz/pubhtml).* 😄
+Se debe importar un dataset que contenga la población anual por comuna extraído de la página oficial del gobierno `https://www.estadisticaciudad.gob.ar/eyc/?p=28146`<br>
 
-- `EDA` (Exploratory Data Analysis)
+Se deben crear los siguientes campos necesarios en el análisis:
+- `AAAA_SEMESTRE`: categórico (str). columna calculada a partir de la columna MM y el año actual
+- `POBLACION_AAAA_SEMESTRE`: numérico (int). población anual por comuna
+- `AAAA_SEMESTRE_ANTERIOR`: categórico (str).
+- `POBLACION_AAAA_SEMESTRE_ANTERIOR`: numérico (int).
+- `AAAA_ANTERIOR`: categórico (str)<br>
 
-Debes realizar un análisis exploratorio de los datos en un notebook. Tienen que estar tus pasos documentados con claridad, con las conclusiones correspondientes en cada gráfico empleado y análisis de lo que vas observando, utilizando celdas Markdown para tal fin. La prolijidad del notebook será un aspecto a evaluar. Es importante que tengas en cuenta que, en muchas oportunidades y trabajos, un EDA constituye un entregable en sí mismo.
+Se mantienen los siguientes campos:
+- `ID`: categórico (str). No se evidencian valores duplicados a través de la columna ID
+- `N_VICTIMAS`: numérico (int).
+- `AAAA`: numérico (int).
+- `MM`: numérico (int). Elimianr despues de crear la columna SEMESTRE
+- `VICTIMA`: categórico (str).
+- `ACUSADO`: categórico (str).<br>
 
-En esta línea, hay varios aspectos indispensables que **deben** ser abordados en cualquier Análisis Exploratorio de Datos y tomaremos como punto de partida para evaluar tu performance en este apartado. Entre estos aspectos destacados se encuentran: *búsqueda de valores faltantes, valores atípicos/extremos u outliers y registros duplicados*. Asimismo, la utilización de gráficos coherentes según la tipología de variable que corresponda resulta esencial.
+Se eliminan los siguientes campos irrelevantes para el análisis de los KPIs
+- `FECHA`
+- `DD`
+- `HORA`
+- `HH`
+- `LUGAR_DEL_HECHO`
+- `TIPO_DE_CALLE`
+- `Calle`
+- `Altura`
+- `Cruce`
+- `Dirección Normalizada`
+- ``COMUNA``
+- `XY (CABA)`
+- `pos x`
+- `pos y`
+- `PARTICIPANTES`<br>
 
-***En caso de hacer uso de librerías como pandas_profiling, es indispensable acompañar los gráficos con análisis propios.***
+## 4- **Limpieza de datos**
 
-- `Dashboard`
+## 5- **Enriquecimiento de columnas**
 
-Debe ser funcional y coherente con el storytelling. El dasbhoard tiene que incluir **filtros**, permitiendo explorar detalladamente los datos con la selección de cada uno de ellos. Es decir, es indispensable que sea **interactivo**. También, se espera que el diseño que implementen facilite la interpretación de la información y su análisis, siendo importante, para ello, la claridad en la presentación de los datos, aspectos inherentes a la esteticidad, elección coherente de los gráficos según las variables a visualizar, entre otros ítems. 
+## 6- **Análisis Univariado**
 
-- `KPIs`
+### **df_hechos.N_VICTIMAS**
 
-Debes graficar y medir los 2 KPIs propuestos a continuación, representándolos adecuadamente en el dashboard. A su vez, tambíen tienes que proponer, medir y graficar un tercer KPI que consideres relevante para la temática. 
-Los dos KPIs propuestos son:
-> - *Reducir en un 10% la tasa de homicidios en siniestros viales de los últimos seis meses, en CABA, en comparación con la tasa de homicidios en siniestros viales del semestre anterior*
->   
-> Definimos a la **tasa de homicidios en siniestros viales** como el número de víctimas fatales en accidentes de tránsito por cada 100,000 habitantes en un área geográfica durante un período de tiempo específico.
-  Su fórmula es: (Número de homicidios en siniestros viales / Población total) * 100,000
-  
-> - *Reducir en un 7% la cantidad de accidentes mortales de motociclistas en el último año, en CABA, respecto al año anterior*
->
-> Definimos a la **cantidad de accidentes mortales de motociclistas en siniestros viales** como el número absoluto de accidentes fatales en los que estuvieron involucradas víctimas que viajaban en moto en un determinado periodo temporal.
-  Su fórmula para medir la evolución de los accidentes mortales con víctimas en moto es: (Número de accidentes mortales con víctimas en moto en el año anterior - Número de accidentes mortales con víctimas en moto en el año actual) / (Número de accidentes mortales con víctimas en moto en el año anterior) * 100
+![N_VICTIMAS](src/grafica_n_victimas.png)
 
+**Conclusiones**
 
- `MUY IMPORTANTE` repasar qué es un KPI y cómo se diferencia de una métrica convencional. En el material de apoyo tienen lectura que puede ser de ayuda.</small>
+- Solamente hay 3 posibilidades de victimas por accidente: 1, 2, 3
+- La media del número de víctimas es aproximadamente 1.03, lo que sugiere que, en promedio, la mayoría de los accidentes tienen alrededor de una víctima.
+- Dado que el 75% de los valores están en el primer cuartil, esto significa que el 75% de los accidentes tienen 1 víctima, y el segundo y tercer cuartiles son también 1. El valor máximo en el cuartil (75%) es 3, lo que indica que el 25% restante de los accidentes tiene 2 o 3 víctimas.
+- Mayor frecuencia de numero de víctimas por accidente: 1 (97.13%)
+- Menor frecuencia de numero de víctimas por accidente: 3 (0.14%)
 
-- `Repositorio de GitHub`
+### **df_hechos.VICTIMA**
 
-El repositorio debe contener un **Readme** principal donde presenten, en una primera instancia, de forma general **su proyecto** y detallen qué hay en cada archivo/carpeta del propio repositorio. Este Readme no puede ser el mismo de la consigna que nosotros les entregamos.
-A su vez, el Readme debe incluir un **reporte de análisis con base en sus dashboards**, así como el análisis y la funcionalidad de los KPIs sugeridos.
+![VICTIMA](src/grafica_victima.png)
 
-### _**Desafíate y no te quedes siendo Junior, sé Junior Advanced**_
+**Conclusiones**
 
-Pensando en alcanzar tu Boom 🚀, te recomendamos incorporar los siguientes desafíos para tener un portfolio mucho más completo y competitivo:
+- Hay 10 tipos diferentes de víctimas involucradas.
+- El valor más frecuente es "MOTO". Esto significa que "MOTO" es el tipo de víctima más común en los accidentes registrados.
+- la frecuencia del tipo de víctima más común ("MOTO") es 295. Esto significa que hubo 295 accidentes en los que estuvieron involucradas motocicletas como víctimas.
+- Victima con mayor frecuencia en accidentes: "MOTO" (42.39%)
+- Victima con menor frecuencia en accidentes: "PEATON_MOTO" (0.14 %)
 
-- Crear una base de datos en un motor SQL, ingestar el dataset procesado y utilizarla como fuente de datos de su dashboard en Power BI (o la herramienta de visualización que utilice).
-- Ejecutar scripts de Python en la herramienta de visualización de datos escogida.
-- Cruce de datos con datasets complementarios, ya sea para obtener información nueva respecto a lesiones, o poder comparar la información disponible con otros aspectos que considere relevantes.
-  
-<sub> Nota: la realización de uno o más de estos ítems no es intercambiable con los requerimientos mínimos establecidos en la sección anterior "Propuesta de trabajo". Empiece con esta sección una vez haya cumplido con los requerimientos mínimos, a modo de desafiarse a usted mismo y destacar frente al resto.</sub>
+### **df_hechos.ACUSADO**
 
-## Fuente de datos
-**Obligatorio:**
+![ACUSADO](src/grafica_acusado.png)
 
-- [Buenos Aires Data](https://data.buenosaires.gob.ar/dataset/victimas-siniestros-viales): deberán utilizar el dataset denominado `Homicidios`
+**Conclusiones:**
 
-**Complementarios:**
-- [Buenos Aires Data](https://data.buenosaires.gob.ar/dataset/victimas-siniestros-viales): pueden usar el dataset de `Lesiones`
-- Cualquier dataset de búsqueda propia que complemente y mejore el análisis. Recuerde el uso de [APIs y WebScrapping](https://www.students.soyhenry.com/classes/95?cohortId=124&videoOrdinal=2)
+- Hay 10 valores únicos en la columna "ACUSADO". Esto significa que existen 10 tipos diferentes de entidades o vehículos acusados en los accidentes registrados.
+- El valor más frecuente en la columna "ACUSADO" es "AUTO". Esto significa que "AUTO" es el tipo de entidad o vehículo más comúnmente acusado en los accidentes registrados en el DataFrame.
+- Indica que la frecuencia del tipo de entidad o vehículo más comúnmente acusado ("AUTO") es 204. Esto significa que hubo 204 accidentes en los que se acusó a un automóvil como la entidad responsable.
+- Acusado con mayor frecuencia de accidentes: AUTO (29.31 %)
+- Acusado con menor frecuencia de accidentes: TREN (0.14 %)
 
-<h1>Lo que tendremos en cuenta a la hora de evaluar</h1>
+### **df_hechos.AAAA**
 
-Serás evaluado en dos grandes áreas  `Tech` y `Soft`!
+![AAAA](src/grafica_aaaa.png)
 
-Ambas con igual peso entre si y ambas deben ser aprobatorias para tener la calidad de aprobado en este PIDA. Ten presente que una nota minima para aprobar significa tener TODOS los items como "Bueno" 👌
+![AAAA](src/grafica_aaaa_2.png)
 
-A continuacion te facilitamos nuevamente la [rúbrica de evaluación](https://docs.google.com/spreadsheets/d/e/2PACX-1vTV3zL1aeGRlbXkiy5012GWbDBMseA4iziMXs597TZfgaYgazjxZDx_-q6L4s9io3JW4UPHcZs_XNyz/pubhtml) con la que seras evaluado por tu corrector@. Recuerda que el feedback de tu corrector@ no es en ningun momento un indicativo de tu nota. 
-Si tienes alguna duda durante tu DEMO, pidele a tu corrector@ que te aclare claramente cuales son los objetivos de aprendizaje no cumplidos.
+**Conclusiones**
 
-Esperamos que te sirva de guia de aprendizaje, y recuerda que no se trata solo de cumplir requisitos, sino de destacar en cada nivel 🚀 💛
+- Hay 6 años únicos diferentes en la columna "AAAA", desde 2016 hasta 2021.
+- (Cuartiles): Estos valores representan los cuartiles del conjunto de datos. Por ejemplo, el valor del primer cuartil (25%) es 2017, lo que significa que el 25% de los accidentes ocurrieron en 2017 o antes. El segundo cuartil (50%) es 2018, que es la mediana, indicando que el 50% de los accidentes ocurrieron en 2018 o antes. El tercer cuartil (75%) es 2020, lo que sugiere que el 75% de los accidentes ocurrieron en 2020 o antes.
+- Año con mayor frecuencia de accidentes: 2016 (20.69%)
+- Año con menor frecuencia de accidentes: 2020 (11.21%)
 
+## 7- **Manejo de valores faltantes (nulos)**
 
-## Material de apoyo
-- [Notas para el uso del dataset de homicidios de siniestros viales de la CABA](https://cdn.buenosaires.gob.ar/datosabiertos/datasets/transporte-y-obras-publicas/victimas-siniestros-viales/NOTAS_HOMICIDIOS_SINIESTRO_VIAL.pdf)
-- [Observatorio de Movilidad y Seguridad Vial de la Ciudad Autónoma de Buenos Aires](https://buenosaires.gob.ar/observatorio-de-movilidad-y-seguridad-vial)
+## 8- **Análisis Multivariado**
 
+### **KPI 1:** tasa de homicidios en siniestros viales
 
-#### Tech
-- [Repaso de clase sobre EDA](https://www.students.soyhenry.com/classes/100?cohortId=106&videoOrdinal=1)
-- [Code Review: **Interactividad** Dashboard, Patron Z, **Tooltips**](https://www.students.soyhenry.com/classes/93?cohortId=124&videoOrdinal=2)
-- [KPI's 4 students](https://docs.google.com/document/d/1DI0ZVgHfOfjgnXGhi8jEKzwCIjtUdgRUDe-qiiGGq8E/edit)
-- [Code Review: DAX y **medidas calculadas**](https://www.students.soyhenry.com/classes/96?cohortId=124&videoOrdinal=2)
+![KPI1](src/grafica_kpi_1.png)
 
-#### Soft
-- ¡Todos los Workshops de esta etapa serán de gran utilidad para tener un proyecto exitoso!
+**Conclusiones:**
 
+1. Dado que no tenemos datos previos al año 2016-1 nuestra primer medida relaciona el semestre `2016-1` y `2016-2` por eso solo se evidencian valores a partir del semestre `2016-2`.<br>
 
+2. Si el valor del semestre en la gráfica es positivo significa que para ese semestre hubo ``menos homicidios`` que el semestre pasado.<br>
 
+3. Si la gráfica tiene pendiente positiva (creciente) significa que la ``diferencia de accidentes de motos`` vs. el semestre anterior ``aumentó de manera positiva``.<br>
 
-## ***Recomendaciones finales***
+4. El valor que se representa en la gráfica indica el porcentaje en que se redujo la ``tasa de homicidios en accidentes de tránsito`` del semestre anterior vs. el actual. Dado que el objetivo es que dicho valor sea ``superior al 10%`` se puede concluir que en el periodo de 6 años comprendido entre 2016 y 2021 se cumplió para los semestres:
 
-¡No debes mostrar nada de código en la exposición! Te recomendamos el workshop *From Data to Viz* para que te quede más claro la dinámica y lo que se espera de tu demo.
+    - 2017-1: En comparación con el semestre anterior se ``redujeron`` los homicidios y ese numero fue ``mayor`` que el logrado el semestre anterior.<br>
 
-Recordamos que sean puntuales y prueben el correcto funcionamiento de las herramientas empleadas ***antes*** de ingresar a la meet.
+    - 2019-1: En comparación con el semestre anterior se ``redujeron`` los homicidios y ese numero fue ``mayor`` que el logrado el semestre anterior.<br>
 
-La **DEMO**, donde defenderás tu proyecto, se realizará el día jueves o viernes. Debes estar atent@ a tu *calendar* para ver qué día y horario te corresponde. 
+    - 2019-2: En comparación con el semestre anterior se ``redujeron`` los homicidios y ese numero fue ``menor`` que el logrado el semestre anterior.<br>
+    
+    - 2021-2: En comparación con el semestre anterior se ``redujeron`` los homicidios y ese numero fue ``mayor`` que el logrado el semestre anterior.
 
-Tendrá una duración total máxima de 30 minutos, de los cuales **sólo 10 minutos serán para su presentación**.  Es importante que sepa **gestionar bien tu tiempo** y tenga un speech ya preparado de 10 minutos, ya que el tiempo restante será dedicado a la corrección, revisión de repositorio y feedback por parte del Henry Mentor.
+5. 4 semestres de 11 cumplieron el objetivo lo cual nos indica que ``no es positivo el balance`` de acuerdo a lo planteado inicialmente
 
+6. 5 semestres de 11 tienen un porcentaje de cambio negativo, es decir, aumenta la tasa de homicidios vs. el semestre anterior. Aunque es minoría sigue siendo alarmante la cantidad
 
+### **KPI 2:** Cantidad de accidentes mortales de motociclistas en siniestros viales
 
-## Disclaimer
-De parte del equipo de Henry se quiere aclarar y remarcar que los fines de los proyectos propuestos son exclusivamente pedagógicos, con el objetivo de realizar proyectos que simulen un entorno laboral, en el cual se trabajen diversas temáticas ajustadas a la realidad. No reflejan necesariamente la filosofía y valores de la organización. Además, Henry no alienta ni tampoco recomienda a los alumnos y/o cualquier persona leyendo los repositorios (y entregas de proyectos) que tomen acciones en base a los datos que pudieran o no haber recabado. Toda la información expuesta y resultados obtenidos en los proyectos nunca deben ser tomados en cuenta para la toma real de decisiones (especialmente en la temática de finanzas, salud, política, etc.).
-  
-  
-<p align='center'>
-<img src ="https://media.giphy.com/media/BpGWitbFZflfSUYuZ9/giphy.gif" height=250>
-<p>
+![KPI2](src/grafica_kpi_2.png)
+
+**Conclusiones:**
+
+1. Dado que no tenemos datos previos al año 2016 nuestra primer medida relaciona el año `2016` y `2017` por eso solo se evidencian valores a partir del año `2017`.<br>
+
+2. Si el valor del año en la gráfica es positivo significa que para ese año hubo ``menos homicidios`` que el año pasado.<br>
+
+3. Si la gráfica tiene pendiente positiva (creciente) significa que la ``diferencia de accidentes de motos`` vs. el año anterior ``aumentó de manera positiva``.<br>
+
+4. El valor que se representa en la gráfica indica el porcentaje en que se redujo la ``cantidad de homicidios en accidentes de motos`` del año anterior vs. el actual. Dado que el objetivo es que dicho valor sea ``superior al 7%`` se puede concluir que en el periodo de 6 años comprendido entre 2016 y 2021 se cumplió para los semestres:
+
+    - 2017: En comparación con el año anterior se ``redujeron`` los homicidios y dado que no tenemos valores para el año anterior no podemos decir si fue mayor o menor respecto de ese año.<br>
+
+    - 2019: En comparación con el año anterior se ``redujeron`` los homicidios y ese numero fue ``mayor`` que el logrado el año anterior.<br>
+
+    - 2020: En comparación con el año anterior se ``redujeron`` los homicidios y ese numero fue ``mayor`` que el logrado el año anterior.<br>
+
+5. 3 años de 5 cumplieron el objetivo lo cual nos indica que ``es positivo el balance`` de acuerdo a lo planteado inicialmente
+
+6. 2 años de 5 tienen un porcentaje de cambio negativo, es decir, aumenta la tasa de accidentes en moto vs. el año anterior. Aunque es minoría sigue siendo alarmante la cantidad
+
+### **KPI 3:** Cantidad de accidentes mortales ocasionado por el mayor responsable de homicidios en siniestros viales del ultimo semestre
+
+![KPI3](src/grafica_kpi_3.png)
+
+**Conclusiones:**
+
+1. El mayor responsable de accidentes de tránsito del último semestre (2021-2) es el ``auto`` por está razón de realiza todo el análisis para este acusado.
+
+2. Dado que no tenemos datos previos al año 2016 nuestra primer medida relaciona el semestre `2016_1` y `2016_2` por eso solo se evidencian valores a partir del semestre `2016_2`.<br>
+
+3. Si el valor del semestre en la gráfica es positivo significa que para ese semestre hubo ``menos accidentes ocasionados por autos`` que el semestre pasado.<br>
+
+4. Si la gráfica tiene pendiente positiva (creciente) significa que la ``diferencia de accidentes ocasionados por autos`` vs. el semestre anterior ``aumentó de manera positiva``.<br>
+
+5. El valor que se representa en la gráfica indica el porcentaje en que se redujo la ``cantidad de accidentes causados por autos`` del semestre anterior vs. el actual. Dado que el objetivo es que dicho valor sea ``superior al 5%`` se puede concluir que en el periodo de 6 años comprendido entre 2016 y 2021 se cumplió para los semestres:
+
+    - 2017_2: Se ``reducen`` los accidentes causados por autos vs. el semestre anterior. Dicha diferencia es mayor que la del semestre pasado..<br>
+
+    - 2019_2: Se ``reducen`` los accidentes causados por autos vs. el semestre anterior. Dicha diferencia es mayor que la del semestre pasado.<br>
+
+    - 2020_1: Se ``reducen`` los accidentes causados por autos vs. el semestre anterior. Dicha diferencia es menor que la del semestre pasado.<br>
+
+    - 2021_1: Se ``reducen`` los accidentes causados por autos vs. el semestre anterior. Dicha diferencia es mayor que la del semestre pasado.
+
+6. 4 semestres de 11 cumplieron el objetivo lo cual nos indica que ``no es positivo el balance`` de acuerdo a lo planteado inicialmente
+
+7. 5 semestres de 11 tienen un porcentaje de cambio negativo, es decir, aumentan los accidentes ocasionados vs. el semestre anterior. Aunque es minoría sigue siendo alarmante la cantidad
